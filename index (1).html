@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lovee World Records</title>
+<meta name="description" content="Lovee World Records is an independent label with its own radio station, record store and dance floor. Send us your music, tune in, or come dance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#22124D; --ink-2:#4B3A7E; --mist:#EFE9FF; --mist-2:#E3DAFB; --white:#FFFFFF;
+  --cherry:#FF2D6B; --sun:#FFC233; --lagoon:#12C7AE; --grape:#9B7BFF;
+  --display:'Unbounded','Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;background:var(--mist);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-bottom:84px;-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--cherry);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+.site{position:sticky;top:0;z-index:40;background:rgba(239,233,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(34,18,77,.1)}
+.site .wrap{display:flex;align-items:center;gap:20px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap}
+.logo small{font-family:var(--body);font-weight:500;font-size:.72rem;display:block;letter-spacing:.02em;color:var(--ink-2);margin-top:-2px}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav a{padding:8px 12px;border-radius:99px;text-decoration:none;font-weight:600;font-size:.95rem;white-space:nowrap}
+.nav a:hover{background:var(--mist-2)}
+.cart-btn{border:2px solid var(--ink);background:transparent;border-radius:99px;padding:7px 14px;font-weight:600;white-space:nowrap}
+.cart-btn:hover{background:var(--ink);color:var(--mist)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--ink);border-radius:99px;padding:13px 22px;font-weight:600;text-decoration:none;background:transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--cherry);border-color:var(--cherry);color:#fff}
+.btn.primary:hover{background:#e51f5c;border-color:#e51f5c}
+.btn.dark{background:var(--ink);color:var(--mist)}
+.btn.small{padding:8px 15px;font-size:.92rem}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+
+/* hero */
+.hero{padding:clamp(34px,6vw,80px) 0 clamp(40px,6vw,76px)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,72px);align-items:center}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.04;letter-spacing:-.03em;margin:0 0 22px}
+.lede{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:34em;color:var(--ink-2);margin:0 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.promises{display:flex;flex-wrap:wrap;gap:10px 26px;margin:34px 0 0;padding:0;list-style:none;font-weight:500;font-size:.95rem}
+.promises li::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--lagoon);margin-right:9px}
+
+.deckwrap{position:relative;width:min(88vw,500px);margin-inline:auto}
+.deck{position:relative;aspect-ratio:1/1}
+.deck canvas{position:absolute;inset:0;width:100%;height:100%}
+.vinyl{position:absolute;inset:16%;border-radius:50%;background:
+  conic-gradient(from 20deg,rgba(255,255,255,0) 0,rgba(255,255,255,.2) 9%,rgba(255,255,255,0) 21%,rgba(255,255,255,0) 50%,rgba(255,255,255,.14) 59%,rgba(255,255,255,0) 71%),
+  repeating-radial-gradient(circle at center,#1a0d3f 0 2px,#0d0623 3px 5px);
+  box-shadow:0 22px 50px rgba(34,18,77,.35);animation:spin 3.4s linear infinite;animation-play-state:paused}
+.vinyl.spin{animation-play-state:running}
+.vinyl .lab{position:absolute;inset:32%;border-radius:50%;background:var(--sun);border:6px solid var(--cherry);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(.55rem,1.6vw,.85rem);line-height:1.1}
+.vinyl .lab span{display:block}
+.vinyl .lab::after{content:"";position:absolute;width:9%;aspect-ratio:1;border-radius:50%;background:var(--mist)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.deck-play{position:absolute;left:50%;top:50%;width:19%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:0;background:var(--ink);color:var(--mist);display:grid;place-items:center;box-shadow:0 6px 18px rgba(34,18,77,.4);transition:transform .15s}
+.deck-play:hover{transform:translate(-50%,-50%) scale(1.07)}
+.deck-play svg{width:46%;height:46%}
+.onair{position:absolute;top:2%;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--mist);padding:5px 14px;border-radius:99px;font-weight:600;font-size:.82rem;display:flex;gap:8px;align-items:center}
+.onair i{width:9px;height:9px;border-radius:50%;background:#7a6aa8}
+.onair.live i{background:var(--cherry);box-shadow:0 0 0 4px rgba(255,45,107,.3)}
+.nowline{text-align:center;margin-top:6px;min-height:3.2em}
+.nowline strong{font-family:var(--display);font-weight:700;font-size:1.02rem;display:block}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.pill{border:2px solid var(--ink);background:transparent;border-radius:99px;padding:6px 14px;font-weight:600;font-size:.9rem}
+.pill[aria-pressed=true]{background:var(--ink);color:var(--mist)}
+
+/* sections */
+.sec{padding:clamp(64px,9vw,118px) 0}
+.sec.alt{background:#F8F5FF}
+.sec.dark{background:var(--ink);color:var(--mist)}
+.sec.sun{background:var(--sun)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1.1;letter-spacing:-.025em;margin:0 0 16px;max-width:18em}
+h3{font-family:var(--display);font-weight:700;font-size:1.1rem;margin:0 0 8px;letter-spacing:-.01em}
+.sec-intro{max-width:40em;margin:0 0 40px;color:var(--ink-2);font-size:1.08rem}
+.dark .sec-intro{color:#CFC4F2}
+.note{font-size:.86rem;color:var(--ink-2)}
+.dark .note{color:#BDB0E6}
+
+/* radio */
+.radio-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);align-items:start}
+.chan-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chan{border:2px solid rgba(239,233,255,.35);background:transparent;border-radius:99px;padding:9px 18px;font-weight:600;color:var(--mist)}
+.chan[aria-pressed=true]{background:var(--mist);color:var(--ink);border-color:var(--mist)}
+.now{border-radius:26px;padding:26px;background:linear-gradient(135deg,rgba(255,45,107,.25),rgba(155,123,255,.18));border:1px solid rgba(239,233,255,.2)}
+.now h3{font-size:1.5rem;margin:4px 0 2px}
+.now .by{color:#CFC4F2;margin:0 0 18px}
+.vizline{width:100%;height:64px;margin:6px 0 14px}
+.prog{height:6px;border-radius:9px;background:rgba(239,233,255,.2);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--sun);border-radius:9px}
+.ctrls{display:flex;align-items:center;gap:12px;margin-top:20px}
+.ic{width:46px;height:46px;border-radius:50%;border:2px solid rgba(239,233,255,.5);background:transparent;display:grid;place-items:center;color:var(--mist)}
+.ic:hover{background:rgba(239,233,255,.15)}
+.ic.big{width:60px;height:60px;background:var(--cherry);border-color:var(--cherry);color:#fff}
+.ic svg{width:22px;height:22px}
+.tracks{list-style:none;margin:0;padding:0}
+.tracks li{border-bottom:1px solid rgba(239,233,255,.16)}
+.trk{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;width:100%;text-align:left;background:transparent;border:0;padding:14px 4px;color:var(--mist)}
+.trk:hover{background:rgba(239,233,255,.07)}
+.trk .n{font-family:var(--display);font-size:.8rem;color:#A99BDB}
+.trk b{display:block;font-weight:600}
+.trk span.by{font-size:.9rem;color:#BDB0E6}
+.trk .bpm{font-size:.82rem;color:#BDB0E6}
+.trk[aria-current=true] b{color:var(--sun)}
+.trk[aria-current=true] .n{color:var(--cherry)}
+.empty{padding:22px 4px;color:#CFC4F2}
+.mic{margin-top:34px;padding:24px;border-radius:22px;background:rgba(239,233,255,.08)}
+.mic h3{color:var(--mist)}
+
+/* forms */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fgrid .full{grid-column:1/-1}
+label.f{display:block;font-weight:600;font-size:.92rem}
+label.f span{display:block;margin-bottom:5px}
+.f input,.f select,.f textarea{width:100%;padding:12px 14px;border-radius:14px;border:2px solid rgba(34,18,77,.25);background:var(--white);font-weight:400}
+.f textarea{min-height:96px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--cherry)}
+.dark .f input,.dark .f select,.dark .f textarea{background:rgba(239,233,255,.1);border-color:rgba(239,233,255,.3);color:var(--mist)}
+.dark .f input::placeholder{color:#A99BDB}
+.dark .f select option{color:var(--ink)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.check input{margin-top:5px;accent-color:var(--cherry)}
+.msg{margin:14px 0 0;font-weight:600}
+.msg.ok{color:#0b8a77}
+.dark .msg.ok{color:var(--lagoon)}
+.msg.err{color:#c2124a}
+
+/* radar */
+.radar-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:20px}
+.radar-tools .sp{margin-left:auto}
+.radar-tools select{padding:8px 12px;border-radius:99px;border:2px solid var(--ink);background:transparent;font-weight:600}
+.rlist{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rrow{display:grid;grid-template-columns:44px 1.5fr 150px 96px auto;gap:18px;align-items:center;padding:20px 4px;border-bottom:1px solid rgba(34,18,77,.2)}
+.rrow .rk{font-family:var(--display);font-weight:800;font-size:1.3rem;color:var(--cherry)}
+.rrow h3{margin:0}
+.badge{display:inline-block;font-size:.74rem;font-weight:600;padding:2px 10px;border-radius:99px;margin-left:8px;vertical-align:2px;background:var(--lagoon);color:var(--ink)}
+.badge.signed{background:var(--sun)}
+.badge.you{background:var(--grape);color:#fff}
+.meta{font-size:.92rem;color:var(--ink-2)}
+.sigs{margin:6px 0 0;padding:0;list-style:none;font-size:.88rem;color:var(--ink-2)}
+.sigs li{display:inline;margin-right:14px}
+.sigs li::before{content:"+ ";color:var(--lagoon);font-weight:700}
+.spark{width:100%;height:48px}
+.score{text-align:center}
+.score b{display:block;font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1}
+.score span{font-size:.78rem;color:var(--ink-2)}
+.ract{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.srcs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.src{font-size:.85rem;font-weight:600;border:2px dashed rgba(34,18,77,.35);border-radius:99px;padding:3px 12px}
+.addwatch{margin-top:34px;padding:26px;border-radius:24px;background:var(--mist-2)}
+
+/* shop */
+.shop-head{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between;margin-bottom:34px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 28px}
+.pgrid>*{min-width:0}
+.prod .buy{flex-wrap:wrap}
+.prod select{min-width:0;width:100%}
+.logo svg{flex:none}
+.prod .art{border-radius:6px;overflow:hidden;box-shadow:0 14px 30px rgba(34,18,77,.22);transition:transform .25s;background:var(--white)}
+.prod:hover .art{transform:rotate(-1.5deg) translateY(-4px)}
+.prod:nth-child(even):hover .art{transform:rotate(1.5deg) translateY(-4px)}
+.prod h3{margin:16px 0 0;font-size:1.02rem}
+.prod .by{margin:0;font-size:.92rem;color:var(--ink-2)}
+.prod .buy{display:flex;gap:8px;margin-top:12px;align-items:center}
+.prod select{flex:1 1 100%;padding:9px 10px;border-radius:12px;border:2px solid var(--ink);background:transparent;font-weight:500}
+.prod .price{font-family:var(--display);font-weight:700;margin-top:10px}
+
+/* dance */
+.stage-wrap{border-radius:28px;overflow:hidden;background:#150A33;position:relative}
+.stage-wrap canvas{width:100%;height:clamp(260px,38vw,420px)}
+.stage-cap{position:absolute;left:18px;bottom:14px;right:18px;display:flex;justify-content:space-between;gap:10px;font-size:.9rem;color:#CFC4F2;pointer-events:none}
+.dance-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:48px;align-items:start}
+.list-plain{margin:0;padding:0;list-style:none}
+.list-plain li{padding:12px 0;border-bottom:1px solid rgba(239,233,255,.18)}
+.list-plain b{color:var(--sun)}
+
+/* join */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{border:2px solid var(--ink);background:transparent;border-radius:99px;padding:8px 18px;font-weight:600}
+.tab[aria-selected=true]{background:var(--ink);color:var(--mist)}
+.join-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,70px);align-items:start}
+.formcard{background:var(--white);border-radius:26px;padding:clamp(20px,3vw,34px);box-shadow:0 20px 40px rgba(34,18,77,.12)}
+.tier{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:18px;border:2px solid rgba(34,18,77,.25);margin-bottom:10px;cursor:pointer;background:rgba(255,255,255,.55)}
+.tier input{margin-top:6px;accent-color:var(--cherry)}
+.tier:has(input:checked){border-color:var(--ink);background:var(--white)}
+.tier b{font-family:var(--display);font-size:.98rem;display:block}
+.tier span{font-size:.92rem;color:var(--ink-2)}
+.calc{margin-top:22px;padding:22px;border-radius:22px;background:var(--ink);color:var(--mist)}
+.calc input[type=range]{width:100%;accent-color:var(--sun)}
+.calc .row{display:flex;justify-content:space-between;gap:12px;font-weight:600}
+.split{display:flex;height:42px;border-radius:12px;overflow:hidden;margin:16px 0 10px;font-weight:700;font-size:.9rem}
+.split div{display:grid;place-items:center;min-width:0;transition:width .25s}
+.split .a{background:var(--cherry);color:#fff}
+.split .l{background:var(--sun);color:var(--ink)}
+
+/* footer */
+footer{background:var(--ink);color:var(--mist);padding:60px 0 40px}
+footer .fwrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+footer h2{font-size:1.6rem;color:var(--mist)}
+.sub{display:flex;gap:10px;flex-wrap:wrap}
+.sub input{flex:1;min-width:200px;padding:12px 16px;border-radius:99px;border:2px solid rgba(239,233,255,.4);background:transparent;color:var(--mist)}
+.flinks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:.95rem}
+.flinks a,.flinks button{background:none;border:0;padding:0;text-decoration:underline;color:var(--mist)}
+.legal{margin-top:34px;font-size:.84rem;color:#A99BDB}
+
+/* player bar */
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--ink);color:var(--mist);border-top:3px solid var(--cherry)}
+#bar .wrap{display:grid;grid-template-columns:auto 1fr auto auto;gap:16px;align-items:center;height:68px}
+#bar .ic{width:44px;height:44px;border-color:rgba(239,233,255,.4)}
+#bar .ic.big{width:48px;height:48px}
+.bar-info{min-width:0}
+.bar-info b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.95rem}
+.bar-info span{font-size:.82rem;color:#CFC4F2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.vol{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.vol input{width:90px;accent-color:var(--sun)}
+
+/* cart + dialogs */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--white);z-index:80;transform:translateX(105%);transition:transform .3s;padding:22px;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(34,18,77,.3)}
+.drawer.open{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.drawer h2{font-size:1.3rem;margin:0}
+.citems{flex:1;overflow:auto;list-style:none;margin:0;padding:0}
+.citem{display:grid;grid-template-columns:62px 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid rgba(34,18,77,.14);align-items:center}
+.citem .th{width:62px;border-radius:4px;overflow:hidden}
+.qty{display:inline-flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink);background:transparent;font-weight:700;line-height:1}
+.scrim{position:fixed;inset:0;background:rgba(34,18,77,.5);z-index:70;display:none}
+.scrim.open{display:block}
+dialog{border:0;border-radius:24px;padding:0;max-width:min(680px,94vw);width:100%;color:var(--ink);background:var(--white);box-shadow:0 30px 80px rgba(34,18,77,.45)}
+dialog::backdrop{background:rgba(34,18,77,.6)}
+.dlg-in{padding:clamp(20px,3vw,32px)}
+.dlg-in header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dlg-in h2{font-size:1.4rem;margin:0}
+.x{border:0;background:var(--mist-2);width:38px;height:38px;border-radius:50%;font-size:1.2rem}
+dialog.hq{max-width:min(1000px,96vw)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(34,18,77,.15);vertical-align:top}
+th{font-family:var(--display);font-size:.78rem}
+.tablewrap{overflow:auto;max-height:50vh}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.stat{background:var(--mist);border-radius:16px;padding:14px}
+.stat b{display:block;font-family:var(--display);font-size:1.6rem}
+#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,30px);background:var(--ink);color:var(--mist);padding:12px 20px;border-radius:99px;font-weight:600;z-index:90;opacity:0;pointer-events:none;transition:.3s;border:2px solid var(--sun);max-width:92vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:960px){
+  .hero .wrap,.radio-grid,.join-grid,.dance-cols,footer .fwrap{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .rrow{grid-template-columns:34px 1fr 90px;gap:12px}
+  .rrow .spark-c,.rrow .ract{grid-column:2/-1}
+  .rrow .ract{justify-content:flex-start}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .vol{display:none}
+  #bar .wrap{grid-template-columns:auto 1fr auto}
+  .logo small{display:none}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .pgrid{grid-template-columns:1fr 1fr;gap:26px 14px}
+  .fgrid{grid-template-columns:1fr}
+  .nav a{padding:8px 9px;font-size:.88rem}
+  .site .wrap{gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .vinyl{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Lovee World Records home">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#22124D" stroke-width="2.5"/><ellipse cx="20" cy="20" rx="7.5" ry="17" fill="none" stroke="#22124D" stroke-width="1.5"/><path d="M3.5 20h33" stroke="#22124D" stroke-width="1.5"/><path d="M20 28.5c-6-4.2-8.4-7-8.4-10a4.4 4.4 0 0 1 8.4-1.8 4.4 4.4 0 0 1 8.4 1.8c0 3-2.4 5.800-8.4 10z" fill="#FF2D6B"/></svg>
+      <span>Lovee<small>World Records</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#radio">Radio</a><a href="#radar">Radar</a><a href="#shop">Shop</a><a href="#dance">Dance</a><a href="#join">Join</a>
+    </nav>
+    <button class="cart-btn" id="cartOpen" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>New artists get played here first.</h1>
+      <p class="lede">Lovee World Records is an independent label with its own radio station, record store and dance floor. Tune in, send us your music, or come dance.</p>
+      <div class="cta-row">
+        <button class="btn primary" id="heroPlay" type="button">Play Lovee Radio</button>
+        <a class="btn" href="#join" data-role="artist">Send us your music</a>
+        <a class="btn" href="#dance">Join the dance floor</a>
+      </div>
+      <ul class="promises">
+        <li>Artists keep ownership of their masters</li>
+        <li>Monthly statements, no hidden deductions</li>
+        <li>Every signed artist gets radio play</li>
+      </ul>
+    </div>
+    <div class="deckwrap">
+      <div class="deck" id="deck">
+        <canvas id="ring" aria-hidden="true"></canvas>
+        <div class="vinyl" id="vinyl" aria-hidden="true"><div class="lab"><div><span>LOVEE</span><span>&nbsp;</span><span>&nbsp;</span><span>WORLD</span></div></div></div>
+        <button class="deck-play" id="deckPlay" type="button" aria-label="Play Lovee Radio"></button>
+        <div class="onair" id="onair"><i></i><span id="onairTxt">Off air</span></div>
+      </div>
+      <div class="nowline" aria-live="polite"><strong id="heroTitle">Press play to tune in</strong><span id="heroBy" class="meta">Four channels, always on</span></div>
+      <div class="pills" id="heroPills" role="group" aria-label="Choose a channel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RADIO -->
+<section class="sec dark" id="radio">
+  <div class="wrap">
+    <h2>Lovee Radio plays what&rsquo;s next.</h2>
+    <p class="sec-intro">Four channels, built into the site, so every visitor can hear your artists and the up-and-coming acts you back. The songs in this preview are generated in your browser as stand-ins. Replace them with real audio links in the TRACKS list at the top of the code.</p>
+    <div class="radio-grid">
+      <div>
+        <div class="chan-tabs" id="chanTabs" role="group" aria-label="Radio channels"></div>
+        <div class="now">
+          <span class="note" id="chanBlurb"></span>
+          <h3 id="nowTitle">Nothing playing</h3>
+          <p class="by" id="nowBy">Pick a channel and press play.</p>
+          <canvas class="vizline" id="vizline" aria-hidden="true"></canvas>
+          <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+          <div class="ctrls">
+            <button class="ic" id="prev" type="button" aria-label="Previous track"></button>
+            <button class="ic big" id="playBig" type="button" aria-label="Play"></button>
+            <button class="ic" id="next" type="button" aria-label="Next track"></button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ol class="tracks" id="trackList"></ol>
+      </div>
+    </div>
+    <div class="mic">
+      <h3>Open Mic: put your track on the air</h3>
+      <p class="note" style="margin-top:0">Add a link or an audio file and it joins the Open Mic channel. Files play in your own browser until uploads are connected to your site.</p>
+      <form id="micForm" class="fgrid f" autocomplete="off">
+        <label class="f"><span>Artist name</span><input name="artist" required maxlength="80"></label>
+        <label class="f"><span>Track title</span><input name="title" required maxlength="80"></label>
+        <label class="f"><span>Audio file (mp3, wav, m4a)</span><input name="file" type="file" accept="audio/*"></label>
+        <label class="f"><span>Or a link to the track</span><input name="url" type="url" placeholder="https://"></label>
+        <div class="full"><button class="btn primary" type="submit">Add to Open Mic</button><p class="msg" id="micMsg" role="status"></p></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- RADAR -->
+<section class="sec" id="radar">
+  <div class="wrap">
+    <h2>Artist Radar: who&rsquo;s making noise right now.</h2>
+    <p class="sec-intro">The Radar ranks rising artists by momentum: how fast their audience grows, how much fans engage, and how steadily they release. Press listen to hear them on Lovee Radio, watch to track them, or invite to start the conversation.</p>
+    <div class="srcs" aria-label="Signals the radar can read">
+      <span class="src">TikTok</span><span class="src">Spotify</span><span class="src">YouTube</span><span class="src">SoundCloud</span><span class="src">Bandcamp</span><span class="src">Instagram</span>
+    </div>
+    <p class="note" id="radarNote" style="margin:0 0 22px">Preview data with invented artists. Connect a live data feed by setting radarEndpoint in CONFIG (format described in the code).</p>
+    <div class="radar-tools">
+      <div id="radarFilters" class="pills" style="margin:0" role="group" aria-label="Filter by sound"></div>
+      <label class="sp"><span class="sr">Sort by</span>
+        <select id="radarSort"><option value="score">Sort: momentum</option><option value="growth">Sort: 7-day growth</option><option value="eng">Sort: fan engagement</option></select></label>
+    </div>
+    <ol class="rlist" id="radarList"></ol>
+    <form class="addwatch fgrid f" id="watchForm" autocomplete="off">
+      <h3 class="full" style="margin:0">Found someone? Add them to your radar.</h3>
+      <label class="f"><span>Artist name</span><input name="name" required maxlength="80"></label>
+      <label class="f"><span>Link to their music or page</span><input name="link" type="url" required placeholder="https://"></label>
+      <label class="f"><span>City</span><input name="city" maxlength="60"></label>
+      <label class="f"><span>Why are they worth watching?</span><input name="why" maxlength="160"></label>
+      <div class="full"><button class="btn dark" type="submit">Add to radar</button><span class="msg ok" id="watchMsg" role="status" style="margin-left:14px"></span></div>
+    </form>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="sec alt" id="shop">
+  <div class="wrap">
+    <div class="shop-head">
+      <div><h2 style="margin:0">The Lovee shop.</h2><p class="sec-intro" style="margin:10px 0 0">Records, merch and the Lovee World Pass. Every sale is split with the artist on the terms in their contract.</p></div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+
+<!-- DANCE -->
+<section class="sec dark" id="dance">
+  <div class="wrap">
+    <h2>Lovee Floor: dancers wanted.</h2>
+    <p class="sec-intro">Every release needs people who can move to it. Dancers, crews and choreographers get featured in rollouts and release videos, and every dancer is credited. The stage below dances to whatever Lovee Radio is playing.</p>
+    <div class="stage-wrap">
+      <canvas id="stage" aria-label="Animated dancers moving to the music" role="img"></canvas>
+      <div class="stage-cap"><span id="stageNow">Press play on Lovee Radio and watch the floor.</span><span id="stageBpm"></span></div>
+    </div>
+    <div class="dance-cols">
+      <div>
+        <h3 style="color:var(--mist)">The monthly Lovee Floor challenge</h3>
+        <ul class="list-plain">
+          <li><b>1. Pick the track.</b> The challenge track is whatever is highlighted on Lovee Radio&rsquo;s Lovee Live channel.</li>
+          <li><b>2. Film your routine.</b> Solo or crew, any style, 15 to 60 seconds.</li>
+          <li><b>3. Send the link.</b> We review every clip and feature standouts in release content, with full credit.</li>
+        </ul>
+        <p style="margin-top:22px"><a class="btn primary" href="#join" data-role="dancer">Apply as a dancer</a></p>
+      </div>
+      <form id="challengeForm" class="fgrid f" autocomplete="off">
+        <h3 class="full" style="margin:0;color:var(--mist)">Send your clip</h3>
+        <label class="f"><span>Your name or crew</span><input name="name" required maxlength="80"></label>
+        <label class="f"><span>Handle</span><input name="handle" maxlength="60" placeholder="@"></label>
+        <label class="f full"><span>Link to your clip</span><input name="link" type="url" required placeholder="https://"></label>
+        <label class="f full"><span>Email</span><input name="email" type="email" required></label>
+        <div class="full"><button class="btn primary" type="submit">Send my clip</button><p class="msg ok" id="chMsg" role="status"></p></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="sec sun" id="join">
+  <div class="wrap">
+    <h2>Make music, dance, or build with Lovee.</h2>
+    <p class="sec-intro" style="color:var(--ink)">We sign a small roster and we read every submission. Pick what you do, tell us about it, and see exactly how our deals work before you apply.</p>
+    <div class="join-grid">
+      <div>
+        <div class="tabs" role="tablist" aria-label="I am a" id="roleTabs"></div>
+        <div class="formcard">
+          <form id="leadForm" class="fgrid f" autocomplete="off"></form>
+          <p class="msg" id="leadMsg" role="status"></p>
+        </div>
+      </div>
+      <div>
+        <h3>How our deals work</h3>
+        <p class="note" style="color:var(--ink);margin-top:0">Pick a tier to see how revenue is shared. These are starting terms and everything is negotiated in plain English with your own lawyer welcome.</p>
+        <div id="tiers" role="radiogroup" aria-label="Deal tier"></div>
+        <div class="calc">
+          <div class="row"><label for="rev">Net receipts in a year</label><output id="revOut">$40,000</output></div>
+          <input type="range" id="rev" min="5000" max="500000" step="5000" value="40000">
+          <div class="split" aria-hidden="true"><div class="a" id="splitA"></div><div class="l" id="splitL"></div></div>
+          <div class="row"><span>Artist keeps <b id="aAmt"></b></span><span>Lovee earns <b id="lAmt"></b></span></div>
+          <p class="note" style="margin:12px 0 0">Illustration only, before any approved costs that are recouped. Final terms live in your contract.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap fwrap">
+    <div>
+      <h2>Get the drop before everyone else.</h2>
+      <form class="sub" id="subForm"><label class="sr" for="subEmail">Email</label><input id="subEmail" type="email" required placeholder="you@example.com"><button class="btn primary" type="submit">Join the list</button></form>
+      <p class="msg ok" id="subMsg" role="status"></p>
+    </div>
+    <div>
+      <b style="font-family:var(--display)">Lovee World Records</b>
+      <div class="flinks">
+        <a id="syncLink" href="#">Sync and licensing</a>
+        <a id="pressLink" href="#">Press</a>
+        <a href="#join" data-role="producer">Producers</a>
+        <a href="#join" data-role="creator">Creators</a>
+        <button type="button" id="hqOpen">Label HQ</button>
+      </div>
+    </div>
+    <p class="legal" style="grid-column:1/-1">&copy; <span id="yr"></span> Lovee World Records. Artist names, tracks and figures in this preview are invented placeholders.</p>
+  </div>
+</footer>
+
+<!-- PLAYER BAR -->
+<div id="bar" role="region" aria-label="Lovee Radio player">
+  <div class="wrap">
+    <button class="ic big" id="barPlay" type="button" aria-label="Play"></button>
+    <div class="bar-info"><b id="barTitle">Lovee Radio</b><span id="barSub">Tap play to tune in</span></div>
+    <button class="ic" id="barNext" type="button" aria-label="Next track"></button>
+    <label class="vol"><span>Vol</span><input type="range" id="vol" min="0" max="100" value="85" aria-label="Volume"></label>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+  <header><h2>Your cart</h2><button class="x" id="cartClose" aria-label="Close cart">&times;</button></header>
+  <ul class="citems" id="citems"></ul>
+  <div style="padding-top:14px">
+    <div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px"><span>Total</span><span id="ctotal">$0</span></div>
+    <button class="btn primary" id="checkout" type="button" style="width:100%;justify-content:center">Check out</button>
+  </div>
+</aside>
+
+<dialog id="orderDlg"><div class="dlg-in">
+  <header><h2>Request your order</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+  <form id="orderForm" class="fgrid f" style="margin-top:16px" autocomplete="on">
+    <label class="f"><span>Name</span><input name="name" required></label>
+    <label class="f"><span>Email</span><input name="email" type="email" required></label>
+    <label class="f full"><span>Shipping address (for physical items)</span><textarea name="address"></textarea></label>
+    <div class="full"><button class="btn primary" type="submit">Send order request</button><p class="msg" id="orderMsg" role="status"></p></div>
+  </form>
+</div></dialog>
+
+<dialog id="inviteDlg"><div class="dlg-in">
+  <header><h2 id="invTitle">Invite</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+  <p class="note">Edit the message, copy it, and send it from your own email or DM.</p>
+  <label class="f"><span class="sr">Message</span><textarea id="invText" style="width:100%;min-height:210px;padding:12px;border-radius:14px;border:2px solid rgba(34,18,77,.25)"></textarea></label>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn primary" id="invCopy" type="button">Copy message</button><button class="btn" id="invMark" type="button">Mark as contacted</button></div>
+</div></dialog>
+
+<dialog id="hqDlg" class="hq"><div class="dlg-in">
+  <header><h2>Label HQ</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+  <div id="hqLock">
+    <p class="note">Enter your HQ passcode. This screen is a convenience for previewing; for real security, keep submissions on your server.</p>
+    <form id="pinForm" class="sub" style="margin-top:10px"><label class="sr" for="pin">Passcode</label><input id="pin" type="password" style="border-color:rgba(34,18,77,.3);color:var(--ink)" placeholder="Passcode"><button class="btn dark" type="submit">Open</button></form>
+    <p class="msg err" id="pinMsg" role="alert"></p>
+  </div>
+  <div id="hqBody" hidden></div>
+</div></dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   LOVEE WORLD RECORDS: single-file site
+   Edit CONFIG and the data lists below; everything else works as is.
+   ============================================================ */
+const CONFIG = {
+  brand: 'Lovee World Records',
+  contactEmail: 'loveeworldrecords@gmail.com',   // used for sync, press and fallback links
+  formEndpoint: 'https://formspree.io/f/mnpjovwr',     // PASTE YOUR FORM URL HERE, e.g. 'https://formspree.io/f/abcdwxyz'. Every form posts JSON to it.
+  radarEndpoint: '',    // GET returns an array of radar artists (see RADAR_DEMO for the fields)
+  checkoutUrl: '',      // Stripe/Shopify checkout link. The cart JSON is added as ?cart=
+  hqPin: 'lovee',       // CHANGE THIS. Local convenience only, not real security.
+};
+
+/* Radio tracks. Add real songs with {url:'https://.../song.mp3', ...} and no style/bpm.
+   Tracks with a style are generated in the browser as stand-ins. */
+const CHANNELS = [
+  {id:'live',   name:'Lovee Live',  blurb:'House and dance-floor energy, 120 to 126 BPM'},
+  {id:'rising', name:'Rising',      blurb:'Hip-hop and R&B from new voices, 84 to 92 BPM'},
+  {id:'night',  name:'Night Drive', blurb:'Slow, warm and late, 70 to 78 BPM'},
+  {id:'open',   name:'Open Mic',    blurb:'Tracks sent in by artists like you'}
+];
+const TRACKS = [
+  {id:'t1', ch:'live',   title:'Golden Hour Static',  artist:'Mira Solenne',       style:'house',  bpm:122, root:57, prog:0, dur:90},
+  {id:'t2', ch:'live',   title:'Paloma After Dark',   artist:'DJ Paloma Static',   style:'house',  bpm:126, root:55, prog:1, dur:90},
+  {id:'t3', ch:'live',   title:'Sunday Floor',        artist:'The Halcyon Kids',   style:'house',  bpm:120, root:52, prog:2, dur:90},
+  {id:'t4', ch:'rising', title:'Low Tide Letters',    artist:'Kasper Vane',        style:'hiphop', bpm:88,  root:53, prog:0, dur:90, swing:.18},
+  {id:'t5', ch:'rising', title:'Paper Crowns',        artist:'Nia Ondine',         style:'hiphop', bpm:92,  root:55, prog:2, dur:90, swing:.15},
+  {id:'t6', ch:'rising', title:'Nine to Never',       artist:'Juno Ray',           style:'hiphop', bpm:84,  root:50, prog:1, dur:90, swing:.2},
+  {id:'t7', ch:'night',  title:'Window Seat',         artist:'Orla Finch',         style:'lofi',   bpm:74,  root:57, prog:2, dur:90, swing:.22},
+  {id:'t8', ch:'night',  title:'After the Rain Stops',artist:'Tamsin Hale',        style:'lofi',   bpm:70,  root:52, prog:0, dur:90, swing:.2},
+  {id:'t9', ch:'night',  title:'Porchlight',          artist:'Wren and the Quiet', style:'lofi',   bpm:78,  root:55, prog:1, dur:90, swing:.2}
+];
+
+/* Radar. A live feed should return objects with these fields.
+   score 0-100, growth = % audience growth in 7 days, eng = engagement %, series = 14 daily numbers. */
+const RADAR_DEMO = [
+  {id:'r1', name:'Mira Solenne',      genre:'live',   genreLabel:'Dance pop',  city:'Phoenix, AZ',    score:94, growth:182, eng:8.4, cadence:'New song every 3 weeks', signals:['Sound reused in 41k short videos','Saves up 3x in 14 days'], signed:true,  track:'t1', series:[8,9,11,10,14,18,22,25,31,38,47,58,71,86]},
+  {id:'r2', name:'Kasper Vane',       genre:'rising', genreLabel:'Hip-hop',    city:'Atlanta, GA',    score:91, growth:140, eng:9.1, cadence:'New song every 2 weeks', signals:['Three playlist adds in 5 days','Live clips trending'], signed:false, track:'t4', series:[12,12,15,17,16,21,24,30,33,41,45,52,60,68]},
+  {id:'r3', name:'Nia Ondine',        genre:'rising', genreLabel:'R&B',        city:'London, UK',     score:88, growth:96,  eng:11.2,cadence:'EP every 6 weeks',       signals:['Comment rate in the top 5%','Booked for a festival slot'], signed:false, track:'t5', series:[20,22,21,25,28,27,33,36,40,44,47,52,55,61]},
+  {id:'r4', name:'DJ Paloma Static',  genre:'live',   genreLabel:'House',      city:'Mexico City',    score:85, growth:77,  eng:6.8, cadence:'Mix every week',         signals:['Club night sold out','Mix shared by other DJs'], signed:true,  track:'t2', series:[30,31,33,36,35,38,40,43,46,48,52,55,57,62]},
+  {id:'r5', name:'Orla Finch',        genre:'night',  genreLabel:'Dream pop',  city:'Dublin, IE',     score:82, growth:64,  eng:7.7, cadence:'New song every month',   signals:['Used in a short film trailer','Fans making fan edits'], signed:false, track:'t7', series:[15,16,16,18,19,21,20,24,26,27,30,33,35,38]},
+  {id:'r6', name:'Juno Ray',          genre:'rising', genreLabel:'Hip-hop',    city:'Chicago, IL',    score:79, growth:58,  eng:7.2, cadence:'New song every 3 weeks', signals:['Cypher video passed 200k views','Producer co-signs'], signed:false, track:'t6', series:[18,19,22,21,24,25,27,29,31,33,36,38,41,43]},
+  {id:'r7', name:'The Halcyon Kids',  genre:'live',   genreLabel:'Indie dance',city:'Berlin, DE',     score:76, growth:49,  eng:5.9, cadence:'Single every 5 weeks',   signals:['Packed a 600-person show','Remix contest underway'], signed:false, track:'t3', series:[22,23,22,25,26,27,29,30,32,33,35,36,38,40]},
+  {id:'r8', name:'Tamsin Hale',       genre:'night',  genreLabel:'Neo soul',   city:'Lagos, NG',      score:73, growth:44,  eng:8.0, cadence:'EP every 2 months',      signals:['Voice clips shared widely','Press feature booked'], signed:false, track:'t8', series:[10,11,12,12,14,15,17,18,19,22,23,25,27,29]},
+  {id:'r9', name:'Wren and the Quiet',genre:'night',  genreLabel:'Folk-soul',  city:'Portland, OR',   score:69, growth:35,  eng:6.1, cadence:'Single every 6 weeks',   signals:['Steady saves each week','Tour announced'], signed:false, track:'t9', series:[14,14,15,16,16,17,18,19,19,21,22,23,24,26]}
+];
+
+const PRODUCTS = [
+  {id:'p1', kind:'record', title:'Golden Hour Static', by:'Mira Solenne',      catno:'LWR-LP-001', seed:1, opts:[{id:'vinyl',label:'Vinyl LP',price:34},{id:'digital',label:'Digital album',price:10},{id:'tape',label:'Cassette',price:16}]},
+  {id:'p2', kind:'record', title:'Low Tide Letters',   by:'Kasper Vane',       catno:'LWR-LP-002', seed:4, opts:[{id:'vinyl',label:'Vinyl LP',price:34},{id:'digital',label:'Digital album',price:10},{id:'tape',label:'Cassette',price:16}]},
+  {id:'p3', kind:'record', title:'Paloma After Dark',  by:'DJ Paloma Static',  catno:'LWR-003',    seed:2, opts:[{id:'12',label:'12-inch single',price:18},{id:'digital',label:'Digital single',price:2}]},
+  {id:'p4', kind:'tee',    title:'Lovee World Tee',    by:'Lovee merch',       catno:'LWR-M-01',   seed:3, opts:[{id:'S',label:'Small',price:38},{id:'M',label:'Medium',price:38},{id:'L',label:'Large',price:38},{id:'XL',label:'X-Large',price:38}]},
+  {id:'p5', kind:'tote',   title:'Lovee Tote',         by:'Lovee merch',       catno:'LWR-M-02',   seed:0, opts:[{id:'one',label:'One size',price:24}]},
+  {id:'p6', kind:'pass',   title:'Lovee World Pass',   by:'Fan membership',    catno:'LWR-PASS',   seed:5, opts:[{id:'month',label:'Monthly',price:6},{id:'year',label:'Yearly',price:60}]}
+];
+
+const PROGS = [
+  [[0,3,7],[-4,0,3],[3,7,10],[-2,2,5]],
+  [[0,3,7],[-2,2,5],[-4,0,3],[-2,2,5]],
+  [[0,3,7,10],[5,8,12,15],[-4,0,3,7],[-2,2,5,8]]
+];
+
+const ROLES = {
+  artist:{label:'Artist', blurb:'Singers, rappers, bands and songwriters.', fields:[
+    ['name','Artist or band name','text',1],['email','Email','email',1],['city','City','text'],['genre','Genre or sound','text',1],
+    ['link','Link to your music','url',1,'full'],['ask','What would you want from a label?','textarea',0,'full']]},
+  dancer:{label:'Dancer', blurb:'Solo dancers, crews and choreographers.', fields:[
+    ['name','Your name or crew','text',1],['email','Email','email',1],['city','City','text'],['style','Dance style','text',1],
+    ['crew','Solo or crew?','select',0,'',['Solo','Crew','Choreographer']],['link','Link to a clip','url',1,'full'],['ask','Tell us about your best work','textarea',0,'full']]},
+  producer:{label:'Producer', blurb:'Beatmakers, engineers and mixers.', fields:[
+    ['name','Name','text',1],['email','Email','email',1],['city','City','text'],['genre','Sound','text',1],
+    ['link','Link to your work','url',1,'full'],['ask','What do you want to make with us?','textarea',0,'full']]},
+  creator:{label:'Creator', blurb:'Video, photo, design and writing.', fields:[
+    ['name','Name','text',1],['email','Email','email',1],['city','City','text'],
+    ['craft','What you make','select',1,'',['Video and film','Photography','Design','Writing','Other']],
+    ['link','Portfolio link','url',1,'full'],['ask','What would you like to work on?','textarea',0,'full']]}
+};
+
+const TIERS = [
+  {id:'dist',    name:'Distribution plus', artist:85, text:'You own your masters. We handle distribution, playlist pitching and reporting.'},
+  {id:'partner', name:'Partnership',       artist:60, text:'You own the masters and license them to us for a fixed term, then they revert. We fund and run the rollout.'},
+  {id:'flag',    name:'Flagship',          artist:50, text:'Full funding and long-term development with co-ownership and reversion rights.'}
+];
+
+/* ============================================================
+   Helpers
+   ============================================================ */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2});
+const uid = () => Math.random().toString(36).slice(2, 9);
+const mem = {};
+const store = {
+  get(k, d){ try { const v = localStorage.getItem('lovee.' + k); return v ? JSON.parse(v) : d; } catch(e){ return k in mem ? mem[k] : d; } },
+  set(k, v){ try { localStorage.setItem('lovee.' + k, JSON.stringify(v)); } catch(e){ mem[k] = v; } }
+};
+function hash(str){ let h = 2166136261; for (let i = 0; i < str.length; i++){ h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
+let toastTimer;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800); }
+async function postJSON(payload){
+  if (!CONFIG.formEndpoint) return false;
+  try { const r = await fetch(CONFIG.formEndpoint, {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(Object.assign({site:CONFIG.brand, submitted_at:new Date().toISOString()}, payload))}); return r.ok; }
+  catch(e){ console.warn('Form endpoint failed', e); return false; }
+}
+function saveRecord(listKey, rec){ const l = store.get(listKey, []); l.unshift(rec); store.set(listKey, l); return l; }
+function openDlg(d){ if (d.showModal) { if (!d.open) d.showModal(); } else d.setAttribute('open', ''); }
+function closeDlg(d){ if (d.close) d.close(); else d.removeAttribute('open'); }
+
+const ICON = {
+  play:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>',
+  pause:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4.5" height="16" rx="1.2"/><rect x="13.5" y="4" width="4.5" height="16" rx="1.2"/></svg>',
+  next:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5.5v13a1 1 0 0 0 1.55.83L16 13.8V18a1 1 0 0 0 2 0V6a1 1 0 0 0-2 0v4.200L6.550 4.670A1 1 0 0 0 5 5.500z"/></svg>',
+  prev:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="transform:scaleX(-1)"><path d="M5 5.5v13a1 1 0 0 0 1.55.83L16 13.8V18a1 1 0 0 0 2 0V6a1 1 0 0 0-2 0v4.200L6.550 4.670A1 1 0 0 0 5 5.500z"/></svg>'
+};
+
+/* ============================================================
+   Audio engine: generated stand-in songs + real audio files
+   ============================================================ */
+const Engine = {
+  ctx:null, master:null, comp:null, an:null, noiseBuf:null, freq:null,
+  track:null, playing:false, timer:null, t0:0, nextT:0, step:0, rng:null,
+  crackle:null, el:null, plain:null, mes:null, fake:false, vol:.85, mode:'none', ended:false,
+  ensure(){
+    if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return true; }
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return false;
+    const c = this.ctx = new AC();
+    this.master = c.createGain(); this.master.gain.value = this.vol;
+    this.comp = c.createDynamicsCompressor(); this.comp.threshold.value = -14; this.comp.ratio.value = 4;
+    this.an = c.createAnalyser(); this.an.fftSize = 256; this.an.smoothingTimeConstant = .78;
+    this.master.connect(this.comp); this.comp.connect(this.an); this.an.connect(c.destination);
+    this.freq = new Uint8Array(this.an.frequencyBinCount);
+    const len = c.sampleRate * 2, b = c.createBuffer(1, len, c.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    this.noiseBuf = b;
+    return true;
+  },
+  setVolume(v){ this.vol = v; if (this.master) this.master.gain.value = v; if (this.plain) this.plain.volume = v; },
+  stopAll(){
+    clearInterval(this.timer); this.timer = null;
+    if (this.crackle) { try { this.crackle.stop(); } catch(e){} this.crackle = null; }
+    if (this.el) { this.el.pause(); }
+    if (this.plain) { this.plain.pause(); }
+    this.playing = false; this.mode = 'none'; this.fake = false;
+  },
+  play(tr){
+    if (!this.ensure()) { toast('Your browser cannot play audio here.'); return false; }
+    this.stopAll(); this.track = tr; this.ended = false;
+    if (tr.url) this.playFile(tr); else this.playSynth(tr);
+    this.playing = true; return true;
+  },
+  pause(){
+    if (!this.playing) return;
+    if (this.mode === 'synth') { clearInterval(this.timer); this.timer = null; this.pausedAt = this.ctx.currentTime; if (this.crackle) { try { this.crackle.stop(); } catch(e){} this.crackle = null; } }
+    else if (this.mode === 'file') this.el.pause();
+    else if (this.mode === 'plain') this.plain.pause();
+    this.playing = false;
+  },
+  resume(){
+    if (!this.track) return false;
+    this.ensure();
+    if (this.mode === 'synth') {
+      const gap = this.ctx.currentTime - (this.pausedAt || this.ctx.currentTime);
+      this.t0 += gap; this.nextT = this.ctx.currentTime + .08;
+      this.timer = setInterval(() => this.tick(), 25);
+      if (this.track.style === 'lofi') this.startCrackle();
+    } else if (this.mode === 'file') this.el.play().catch(() => {});
+    else if (this.mode === 'plain') this.plain.play().catch(() => {});
+    else return this.play(this.track);
+    this.playing = true; return true;
+  },
+  /* progress 0..1 */
+  progress(){
+    if (!this.track) return 0;
+    if (this.mode === 'synth') { const t = this.playing ? this.ctx.currentTime : (this.pausedAt || this.ctx.currentTime); return Math.min(1, (t - this.t0) / (this.track.dur || 90)); }
+    const e = this.mode === 'plain' ? this.plain : this.el;
+    return e && e.duration ? e.currentTime / e.duration : 0;
+  },
+  playFile(tr){
+    const c = this.ctx;
+    if (!this.el) {
+      this.el = new Audio(); this.el.crossOrigin = 'anonymous'; this.el.preload = 'auto';
+      this.mes = c.createMediaElementSource(this.el); this.mes.connect(this.master);
+      this.el.addEventListener('ended', () => { if (Engine.mode === 'file') Radio.next(true); });
+      this.el.addEventListener('error', () => { if (Engine.mode === 'file' && Engine.track && !Engine.triedPlain) Engine.fallbackPlain(); });
+    }
+    this.triedPlain = false; this.mode = 'file'; this.el.src = tr.url;
+    this.el.play().catch(() => { if (!this.triedPlain) this.fallbackPlain(); });
+  },
+  fallbackPlain(){
+    this.triedPlain = true;
+    if (!this.plain) { this.plain = new Audio(); this.plain.preload = 'auto'; this.plain.addEventListener('ended', () => { if (Engine.mode === 'plain') Radio.next(true); }); }
+    if (this.el) this.el.pause();
+    this.plain.volume = this.vol; this.plain.src = this.track.url; this.mode = 'plain'; this.fake = true;
+    this.plain.play().catch(() => toast('That audio link could not be played.'));
+  },
+  playSynth(tr){
+    const c = this.ctx; this.mode = 'synth'; this.rng = mulberry32(hash(tr.id)); this.step = 0;
+    this.t0 = c.currentTime; this.nextT = c.currentTime + .08;
+    if (tr.style === 'lofi') this.startCrackle();
+    this.timer = setInterval(() => this.tick(), 25);
+  },
+  startCrackle(){
+    const c = this.ctx, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = this.noiseBuf; s.loop = true; f.type = 'highpass'; f.frequency.value = 5200; g.gain.value = .018;
+    s.connect(f).connect(g).connect(this.master); s.start(); this.crackle = s;
+  },
+  tick(){
+    const c = this.ctx, tr = this.track; if (!tr) return;
+    const sd = 60 / tr.bpm / 4;
+    while (this.nextT < c.currentTime + .14) {
+      const sw = (this.step % 2 === 1 && tr.swing) ? sd * tr.swing : 0;
+      this.sched(this.step, this.nextT + sw);
+      this.nextT += sd; this.step++;
+    }
+    if (!this.ended && c.currentTime - this.t0 > (tr.dur || 90)) { this.ended = true; Radio.next(true); }
+  },
+  sched(step, t){
+    const tr = this.track, s = step % 16, bar = Math.floor(step / 16), root = tr.root, r = this.rng;
+    const chord = PROGS[tr.prog][bar % 4], pent = [0,3,5,7,10,12,15];
+    const barLen = 60 / tr.bpm * 4;
+    if (tr.style === 'house') {
+      if (s % 4 === 0) this.kick(t, 1);
+      if (s === 4 || s === 12) this.clap(t, .7);
+      if (s % 4 === 2) { this.hat(t, .5, true); this.bass(t, mtof(root + chord[0] - 12), .2, 'sawtooth'); }
+      else if (s % 2 === 1) this.hat(t, .16, false);
+      if (s === 0) this.pad(t, chord.map(n => mtof(root + n)), barLen, .05);
+      if (s === 0 || s === 6 || s === 10) this.stab(t, chord.map(n => mtof(root + n + 12)), .2);
+      if (s % 2 === 0 && bar % 2 === 1 && r() < .55) this.lead(t, mtof(root + 24 + pent[Math.floor(r() * pent.length)]), .14);
+    } else if (tr.style === 'hiphop') {
+      const kicks = bar % 2 ? [0,6,10] : [0,7,10];
+      if (kicks.includes(s)) { this.kick(t, .9); this.bass(t, mtof(root + chord[0] - 24), .38, 'sine', 1); }
+      if (s === 4 || s === 12) this.snare(t, .8);
+      if (s % 2 === 0) this.hat(t, .3, false); if (s === 15 && r() < .5) this.hat(t, .35, true);
+      if (s === 0) this.pad(t, chord.map(n => mtof(root + n)), barLen, .04);
+      if ((s === 3 || s === 8 || s === 14) && r() < .7) this.rhodes(t, mtof(root + 12 + chord[Math.floor(r() * chord.length)]), 1.1, .09);
+    } else {
+      if (s === 0 || s === 10) this.kick(t, .6);
+      if (s === 4 || s === 12) this.snare(t, .35);
+      if (s % 2 === 0 && r() < .7) this.hat(t, .14, false);
+      if (s === 0 || s === 8) this.bass(t, mtof(root + chord[0] - 12), .6, 'sine', 1);
+      if ([0,3,6,8,11,14].includes(s)) this.rhodes(t, mtof(root + chord[Math.floor(r() * chord.length)] + 12), 1.4, .11);
+    }
+  },
+  env(g, t, a, peak, d){ g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + d); },
+  kick(t, v){ const c = this.ctx, o = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(155, t); o.frequency.exponentialRampToValueAtTime(42, t + .13); g.gain.setValueAtTime(.95 * v, t); g.gain.exponentialRampToValueAtTime(.001, t + .32); o.connect(g).connect(this.master); o.start(t); o.stop(t + .34); },
+  noise(t, dur, type, f, q, vol){ const c = this.ctx, s = c.createBufferSource(), fl = c.createBiquadFilter(), g = c.createGain(); s.buffer = this.noiseBuf; fl.type = type; fl.frequency.value = f; fl.Q.value = q; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + dur); s.connect(fl).connect(g).connect(this.master); s.start(t, Math.random()); s.stop(t + dur + .05); },
+  hat(t, v, open){ this.noise(t, open ? .22 : .05, 'highpass', 7500, .7, .32 * v); },
+  clap(t, v){ [0, .012, .024].forEach(d => this.noise(t + d, .09, 'bandpass', 1600, 1.1, .5 * v)); },
+  snare(t, v){ this.noise(t, .17, 'highpass', 1800, .8, .45 * v); const c = this.ctx, o = c.createOscillator(), g = c.createGain(); o.type = 'triangle'; o.frequency.setValueAtTime(210, t); o.frequency.exponentialRampToValueAtTime(130, t + .1); g.gain.setValueAtTime(.3 * v, t); g.gain.exponentialRampToValueAtTime(.001, t + .14); o.connect(g).connect(this.master); o.start(t); o.stop(t + .16); },
+  bass(t, f, dur, type, sub){ const c = this.ctx, o = c.createOscillator(), fl = c.createBiquadFilter(), g = c.createGain(); o.type = type; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.setValueAtTime(sub ? 400 : 1100, t); fl.frequency.exponentialRampToValueAtTime(180, t + dur); g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(sub ? .6 : .38, t + .01); g.gain.exponentialRampToValueAtTime(.001, t + dur); o.connect(fl).connect(g).connect(this.master); o.start(t); o.stop(t + dur + .05); },
+  stab(t, fs, dur){ const c = this.ctx; fs.forEach(f => { const o = c.createOscillator(), fl = c.createBiquadFilter(), g = c.createGain(); o.type = 'sawtooth'; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 1900; this.env(g, t, .005, .06, dur); o.connect(fl).connect(g).connect(this.master); o.start(t); o.stop(t + dur + .05); }); },
+  pad(t, fs, dur, vol){ const c = this.ctx; fs.forEach(f => { const o = c.createOscillator(), fl = c.createBiquadFilter(), g = c.createGain(); o.type = 'triangle'; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 1400; g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(vol, t + dur * .35); g.gain.linearRampToValueAtTime(.0001, t + dur); o.connect(fl).connect(g).connect(this.master); o.start(t); o.stop(t + dur + .05); }); },
+  lead(t, f, dur){ const c = this.ctx, o = c.createOscillator(), fl = c.createBiquadFilter(), g = c.createGain(); o.type = 'square'; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 2600; this.env(g, t, .004, .07, dur); o.connect(fl).connect(g).connect(this.master); o.start(t); o.stop(t + dur + .05); },
+  rhodes(t, f, dur, vol){ const c = this.ctx, o = c.createOscillator(), o2 = c.createOscillator(), g = c.createGain(); o.type = 'sine'; o2.type = 'triangle'; o.frequency.value = f; o2.frequency.value = f * 2; const g2 = c.createGain(); g2.gain.value = .25; this.env(g, t, .006, vol, dur); o.connect(g); o2.connect(g2).connect(g); g.connect(this.master); o.start(t); o2.start(t); o.stop(t + dur + .05); o2.stop(t + dur + .05); }
+};
+
+/* shared analysis, read once per frame */
+const Viz = {
+  bass:0, mid:0, high:0, bars:new Array(72).fill(0), beat:0, bpm:100, last:0, t:0,
+  update(now){
+    const dt = Math.min(.05, (now - this.last) / 1000 || 0); this.last = now; this.t += dt;
+    const tr = Engine.track, playing = Engine.playing;
+    this.bpm = playing && tr && tr.bpm ? tr.bpm : (playing ? 110 : 96);
+    this.beat += dt * this.bpm / 60;
+    const real = playing && Engine.an && !Engine.fake;
+    if (real) {
+      Engine.an.getByteFrequencyData(Engine.freq);
+      const f = Engine.freq; let b = 0, m = 0, h = 0;
+      for (let i = 0; i < 4; i++) b += f[i]; for (let i = 4; i < 24; i++) m += f[i]; for (let i = 24; i < 64; i++) h += f[i];
+      this.bass = b / 4 / 255; this.mid = m / 20 / 255; this.high = h / 40 / 255;
+      for (let i = 0; i < 72; i++) { const v = f[2 + Math.floor(i * 0.75)] / 255; this.bars[i] += (v - this.bars[i]) * .5; }
+    } else {
+      const k = playing ? 1 : .18, ph = this.beat * Math.PI * 2;
+      this.bass = k * (.45 + .4 * Math.pow(Math.max(0, Math.cos(ph)), 3)); this.mid = k * .35; this.high = k * .25;
+      for (let i = 0; i < 72; i++) { const v = k * (.28 + .3 * Math.abs(Math.sin(this.t * 2 + i * .45)) * (1 - i / 120)) + (playing ? 0 : .04); this.bars[i] += (v - this.bars[i]) * .2; }
+    }
+  }
+};
+
+/* ============================================================
+   Radio controller + UI
+   ============================================================ */
+const Radio = {
+  ch:'live', cur:null, open:[],
+  all(){ return TRACKS.concat(this.open); },
+  list(ch){ return this.all().filter(t => t.ch === (ch || this.ch)); },
+  find(id){ return this.all().find(t => t.id === id); },
+  setChannel(ch, autoplay){ this.ch = ch; const l = this.list(); if (autoplay && l.length) this.playTrack(l[0].id); else { renderRadio(); } },
+  playTrack(id){ const t = this.find(id); if (!t) return; this.cur = t; this.ch = t.ch; if (Engine.play(t)) { renderRadio(); } },
+  toggle(){
+    if (!this.cur) { const l = this.list(); if (!l.length) { toast('Add a track to Open Mic first.'); return; } this.playTrack(l[0].id); return; }
+    if (Engine.playing) Engine.pause(); else Engine.resume();
+    renderRadio();
+  },
+  next(auto){ const l = this.list(this.cur ? this.cur.ch : this.ch); if (!l.length) return; let i = l.findIndex(t => this.cur && t.id === this.cur.id); this.playTrack(l[(i + 1) % l.length].id); },
+  prev(){ const l = this.list(this.cur ? this.cur.ch : this.ch); if (!l.length) return; let i = l.findIndex(t => this.cur && t.id === this.cur.id); this.playTrack(l[(i - 1 + l.length) % l.length].id); }
+};
+
+function renderRadio(){
+  const on = Engine.playing, cur = Radio.cur;
+  const chanBtns = CHANNELS.map(c => `<button class="chan" type="button" data-ch="${c.id}" aria-pressed="${Radio.ch === c.id}">${esc(c.name)}</button>`).join('');
+  $('#chanTabs').innerHTML = chanBtns;
+  $('#heroPills').innerHTML = CHANNELS.map(c => `<button class="pill" type="button" data-ch="${c.id}" aria-pressed="${Radio.ch === c.id}">${esc(c.name)}</button>`).join('');
+  const chan = CHANNELS.find(c => c.id === Radio.ch);
+  $('#chanBlurb').textContent = chan.name + ': ' + chan.blurb;
+  const l = Radio.list();
+  $('#trackList').innerHTML = l.length ? l.map((t, i) => `<li><button class="trk" type="button" data-t="${esc(t.id)}" ${cur && cur.id === t.id ? 'aria-current="true"' : ''}><span class="n">${String(i + 1).padStart(2, '0')}</span><span><b>${esc(t.title)}</b><span class="by">${esc(t.artist)}</span></span><span class="bpm">${t.bpm ? t.bpm + ' BPM' : 'Audio'}</span></button></li>`).join('')
+    : '<li class="empty">Nothing here yet. Send a track through Open Mic below and it plays on this channel.</li>';
+  $('#nowTitle').textContent = cur ? cur.title : 'Nothing playing';
+  $('#nowBy').textContent = cur ? cur.artist + ' on ' + (CHANNELS.find(c => c.id === cur.ch) || chan).name : 'Pick a channel and press play.';
+  const icon = on ? ICON.pause : ICON.play, label = on ? 'Pause' : 'Play';
+  ['#playBig', '#barPlay', '#deckPlay'].forEach(s => { const b = $(s); b.innerHTML = icon; b.setAttribute('aria-label', label + (s === '#deckPlay' ? ' Lovee Radio' : '')); });
+  $('#prev').innerHTML = ICON.prev; $('#next').innerHTML = ICON.next; $('#barNext').innerHTML = ICON.next;
+  $('#vinyl').classList.toggle('spin', on);
+  $('#onair').classList.toggle('live', on); $('#onairTxt').textContent = on ? 'On air' : 'Off air';
+  $('#heroTitle').textContent = cur ? cur.title : 'Press play to tune in';
+  $('#heroBy').textContent = cur ? cur.artist : 'Four channels, always on';
+  $('#barTitle').textContent = cur ? cur.title : 'Lovee Radio';
+  $('#barSub').textContent = cur ? cur.artist + ' on ' + (CHANNELS.find(c => c.id === cur.ch) || chan).name : 'Tap play to tune in';
+  $('#stageNow').textContent = cur && on ? 'Dancing to ' + cur.title + ' by ' + cur.artist : 'Press play on Lovee Radio and watch the floor.';
+  $('#stageBpm').textContent = cur && cur.bpm && on ? cur.bpm + ' BPM' : '';
+  renderRadar();
+}
+document.addEventListener('click', e => {
+  const ch = e.target.closest('[data-ch]'); if (ch) { Radio.setChannel(ch.dataset.ch, true); return; }
+  const tr = e.target.closest('[data-t]'); if (tr) { Radio.playTrack(tr.dataset.t); return; }
+});
+$('#playBig').addEventListener('click', () => Radio.toggle());
+$('#barPlay').addEventListener('click', () => Radio.toggle());
+$('#deckPlay').addEventListener('click', () => Radio.toggle());
+$('#heroPlay').addEventListener('click', () => { if (!Engine.playing) Radio.toggle(); toast('Lovee Radio is on.'); });
+$('#next').addEventListener('click', () => Radio.next());
+$('#barNext').addEventListener('click', () => Radio.next());
+$('#prev').addEventListener('click', () => Radio.prev());
+$('#vol').addEventListener('input', e => Engine.setVolume(e.target.value / 100));
+
+/* Open Mic */
+(function(){
+  Radio.open = store.get('openmic', []).filter(t => t.url);
+  $('#micForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target, fd = new FormData(f), file = fd.get('file'), link = (fd.get('url') || '').trim();
+    const msg = $('#micMsg'); msg.className = 'msg';
+    if (!(file && file.size) && !link) { msg.classList.add('err'); msg.textContent = 'Add an audio file or a link so we can play it.'; return; }
+    const tr = {id:'o' + uid(), ch:'open', title:fd.get('title'), artist:fd.get('artist'), url: file && file.size ? URL.createObjectURL(file) : link, local: !!(file && file.size)};
+    Radio.open.push(tr);
+    store.set('openmic', Radio.open.filter(t => !t.local));
+    saveRecord('leads', {id:uid(), type:'open-mic', status:'new', at:new Date().toISOString(), data:{name:tr.artist, title:tr.title, link: tr.local ? '(file: ' + file.name + ')' : link}});
+    await postJSON({type:'open-mic', artist:tr.artist, title:tr.title, link: tr.local ? null : link});
+    f.reset(); msg.classList.add('ok'); msg.textContent = 'Added to Open Mic. Press play on the Open Mic channel to hear it.';
+    Radio.ch = 'open'; renderRadio();
+  });
+})();
+
+/* ============================================================
+   Radar
+   ============================================================ */
+let RADAR = RADAR_DEMO.slice();
+let radarFilter = 'all', radarSort = 'score';
+const radarState = store.get('radarState', {});
+const radarCustom = store.get('radarCustom', []);
+const FILTERS = [['all','All sounds'],['live','Dance'],['rising','Hip-hop and R&B'],['night','Late night'],['unsigned','Unsigned only']];
+
+function spark(series, w = 150, h = 48){
+  const mx = Math.max(...series), mn = Math.min(...series), rg = (mx - mn) || 1;
+  const pts = series.map((v, i) => [Math.round(i * (w - 6) / (series.length - 1)) + 3, Math.round(h - 5 - (v - mn) / rg * (h - 12))]);
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" role="img" aria-label="Audience trend over 14 days, rising"><polyline fill="none" stroke="#12C7AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="${pts.map(p => p.join(',')).join(' ')}"/><circle cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="4.5" fill="#FF2D6B"/></svg>`;
+}
+function renderRadar(){
+  const box = $('#radarList'); if (!box) return;
+  $('#radarFilters').innerHTML = FILTERS.map(f => `<button class="pill" type="button" data-rf="${f[0]}" aria-pressed="${radarFilter === f[0]}">${f[1]}</button>`).join('');
+  let list = RADAR.concat(radarCustom.map(c => ({id:c.id, name:c.name, genre:'custom', genreLabel:'Added by you', city:c.city || 'Unknown', score:null, growth:0, eng:0, cadence:c.why || 'Added to your radar', signals:[], signed:false, custom:true, link:c.link, series:null})));
+  list = list.filter(a => radarFilter === 'all' ? true : radarFilter === 'unsigned' ? !a.signed : a.genre === radarFilter || a.custom);
+  list.sort((a, b) => (b[radarSort] ?? -1) - (a[radarSort] ?? -1));
+  box.innerHTML = list.map((a, i) => {
+    const st = radarState[a.id] || '';
+    const playing = Radio.cur && Engine.playing && a.track && Radio.cur.id === a.track;
+    return `<li class="rrow">
+      <span class="rk">${i + 1}</span>
+      <div><h3>${esc(a.name)}${a.signed ? '<span class="badge signed">Signed</span>' : ''}${a.custom ? '<span class="badge you">Yours</span>' : ''}${st === 'contacted' ? '<span class="badge">Contacted</span>' : st === 'watching' ? '<span class="badge">Watching</span>' : ''}</h3>
+        <div class="meta">${esc(a.genreLabel)} &middot; ${esc(a.city)} &middot; ${esc(a.cadence)}</div>
+        ${a.signals && a.signals.length ? '<ul class="sigs">' + a.signals.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>' : ''}</div>
+      <div class="spark-c">${a.series ? spark(a.series) + '<div class="meta" style="text-align:center">+' + a.growth + '% in 7 days</div>' : ''}</div>
+      <div class="score">${a.score != null ? '<b>' + a.score + '</b><span>momentum</span>' : '<span>Unscored</span>'}</div>
+      <div class="ract">
+        ${a.track ? `<button class="btn small" type="button" data-listen="${a.track}">${playing ? 'Playing' : 'Listen'}</button>` : (a.link ? `<a class="btn small" href="${esc(a.link)}" target="_blank" rel="noopener">Open link</a>` : '')}
+        <button class="btn small" type="button" data-watch="${esc(a.id)}" aria-pressed="${st === 'watching'}">${st === 'watching' ? 'Unwatch' : 'Watch'}</button>
+        <button class="btn small dark" type="button" data-invite="${esc(a.id)}">Invite</button>
+      </div></li>`;
+  }).join('');
+}
+function radarArtist(id){ return RADAR.find(a => a.id === id) || radarCustom.find(a => a.id === id); }
+let inviteId = null;
+document.addEventListener('click', e => {
+  const rf = e.target.closest('[data-rf]'); if (rf) { radarFilter = rf.dataset.rf; renderRadar(); return; }
+  const li = e.target.closest('[data-listen]'); if (li) { Radio.playTrack(li.dataset.listen); document.getElementById('radio').scrollIntoView({behavior:'smooth'}); return; }
+  const w = e.target.closest('[data-watch]'); if (w) {
+    const id = w.dataset.watch; radarState[id] = radarState[id] === 'watching' ? '' : 'watching'; store.set('radarState', radarState); renderRadar();
+    toast(radarState[id] === 'watching' ? 'Added to your watchlist.' : 'Removed from your watchlist.'); return; }
+  const inv = e.target.closest('[data-invite]'); if (inv) {
+    const a = radarArtist(inv.dataset.invite); if (!a) return; inviteId = a.id;
+    $('#invTitle').textContent = 'Invite ' + a.name;
+    $('#invText').value = `Hi ${a.name},\n\nI run Lovee World Records, an independent label with its own radio station. We have been following your music${a.city ? ' out of ' + a.city : ''} and we like where it is going.\n\nWe would love to play your music on Lovee Radio and talk about working together. Artists on Lovee keep ownership of their masters and get monthly statements.\n\nWould you be open to a quick call this week?\n\nThe Lovee team\n${CONFIG.contactEmail}`;
+    openDlg($('#inviteDlg')); }
+});
+$('#radarSort').addEventListener('change', e => { radarSort = e.target.value; renderRadar(); });
+$('#invCopy').addEventListener('click', async () => { const t = $('#invText'); try { await navigator.clipboard.writeText(t.value); toast('Message copied.'); } catch(e){ t.select(); document.execCommand && document.execCommand('copy'); toast('Message copied.'); } });
+$('#invMark').addEventListener('click', () => {
+  if (!inviteId) return; radarState[inviteId] = 'contacted'; store.set('radarState', radarState);
+  const a = radarArtist(inviteId);
+  saveRecord('leads', {id:uid(), type:'radar-outreach', status:'contacted', at:new Date().toISOString(), data:{name:a ? a.name : inviteId, link:a && a.link || ''}});
+  postJSON({type:'radar-outreach', artist:a ? a.name : inviteId});
+  closeDlg($('#inviteDlg')); renderRadar(); toast('Marked as contacted.');
+});
+$('#watchForm').addEventListener('submit', async e => {
+  e.preventDefault(); const d = Object.fromEntries(new FormData(e.target).entries());
+  radarCustom.unshift({id:'c' + uid(), name:d.name, link:d.link, city:d.city, why:d.why}); store.set('radarCustom', radarCustom);
+  postJSON({type:'radar-add', ...d}); e.target.reset(); renderRadar();
+  const m = $('#watchMsg'); m.textContent = 'Added. They now appear in your list.'; setTimeout(() => m.textContent = '', 3500);
+});
+(async function loadRadar(){
+  if (!CONFIG.radarEndpoint) return;
+  try { const r = await fetch(CONFIG.radarEndpoint); const j = await r.json();
+    if (Array.isArray(j) && j.length) { RADAR = j.map((a, i) => Object.assign({id:'x' + i, genre:'live', genreLabel:'', city:'', score:0, growth:0, eng:0, cadence:'', signals:[], series:[1,2,3,4,5,6,7,8,9,10,11,12,13,14]}, a)); $('#radarNote').textContent = 'Live data.'; renderRadar(); }
+  } catch(e){ console.warn('Radar feed failed', e); }
+})();
+
+/* ============================================================
+   Shop
+   ============================================================ */
+const PAL = [['#FF2D6B','#FFC233','#22124D'],['#12C7AE','#22124D','#FFC233'],['#FFC233','#FF2D6B','#22124D'],['#9B7BFF','#FFC233','#22124D'],['#22124D','#FF2D6B','#12C7AE'],['#FFC233','#22124D','#FF2D6B']];
+function art(p, size){
+  const pal = PAL[p.seed % PAL.length], r = mulberry32(p.seed * 131 + 7), bgc = pal[0];
+  const cx = 60 + Math.round(r() * 80), cy = 60 + Math.round(r() * 70);
+  if (p.kind === 'tee') return `<svg viewBox="0 0 200 200" role="img" aria-label="${esc(p.title)}"><rect width="200" height="200" fill="#F3EEFF"/><path d="M62 30l-40 22 14 32 20-9v95h88V75l20 9 14-32-40-22c-4 12-16 20-38 20s-34-8-38-20z" fill="${pal[2]}"/><circle cx="100" cy="102" r="26" fill="none" stroke="${pal[0]}" stroke-width="3"/><ellipse cx="100" cy="102" rx="10" ry="26" fill="none" stroke="${pal[0]}" stroke-width="2"/><path d="M100 118c-9-6-12-10-12-14a6 6 0 0 1 12-3 6 6 0 0 1 12 3c0 4-3 8-12 14z" fill="${pal[1]}"/></svg>`;
+  if (p.kind === 'tote') return `<svg viewBox="0 0 200 200" role="img" aria-label="${esc(p.title)}"><rect width="200" height="200" fill="#F3EEFF"/><path d="M70 70c0-30 60-30 60 0" fill="none" stroke="#22124D" stroke-width="7" stroke-linecap="round"/><rect x="42" y="66" width="116" height="236" rx="4" transform="scale(1 .62)" fill="${pal[1]}" /><circle cx="100" cy="124" r="24" fill="none" stroke="${pal[0]}" stroke-width="3"/><path d="M100 138c-8-5-11-9-11-12a5.500 5.500 0 0 1 11-2.500 5.500 5.500 0 0 1 11 2.500c0 3-3 7-11 12z" fill="${pal[0]}"/></svg>`;
+  if (p.kind === 'pass') return `<svg viewBox="0 0 200 200" role="img" aria-label="${esc(p.title)}"><rect width="200" height="200" fill="${pal[0]}"/><rect x="26" y="52" width="148" height="96" rx="14" fill="${pal[2]}" transform="rotate(-6 100 100)"/><circle cx="64" cy="100" r="18" fill="${pal[1]}" transform="rotate(-6 100 100)"/><text x="92" y="98" font-family="Unbounded,sans-serif" font-weight="800" font-size="13" fill="#EFE9FF" transform="rotate(-6 100 100)">LOVEE</text><text x="92" y="116" font-family="Unbounded,sans-serif" font-size="8" fill="#EFE9FF" transform="rotate(-6 100 100)">WORLD PASS</text></svg>`;
+  return `<svg viewBox="0 0 200 200" role="img" aria-label="${esc(p.title)} by ${esc(p.by)}, cover art"><rect width="200" height="200" fill="${bgc}"/><circle cx="${cx}" cy="${cy}" r="62" fill="${pal[1]}"/><circle cx="100" cy="100" r="78" fill="none" stroke="${pal[2]}" stroke-width="10" stroke-dasharray="${60 + Math.round(r() * 120)} 400" stroke-linecap="round" transform="rotate(${Math.round(r() * 360)} 100 100)"/><ellipse cx="100" cy="100" rx="26" ry="78" fill="none" stroke="${pal[2]}" stroke-width="2.500"/><path d="M12 100h176" stroke="${pal[2]}" stroke-width="2.500"/><text x="12" y="188" font-family="Unbounded,sans-serif" font-weight="800" font-size="11" fill="${pal[2]}">LOVEE</text><text x="188" y="188" text-anchor="end" font-family="Unbounded,sans-serif" font-size="8" fill="${pal[2]}">${esc(p.catno)}</text></svg>`;
+}
+const cart = store.get('cart', {});
+function cartKey(pid, oid){ return pid + ':' + oid; }
+function prodOpt(key){ const [pid, oid] = key.split(':'); const p = PRODUCTS.find(x => x.id === pid); const o = p && p.opts.find(x => x.id === oid); return p && o ? {p, o} : null; }
+function renderShop(){
+  $('#pgrid').innerHTML = PRODUCTS.map(p => `<article class="prod"><div class="art">${art(p)}</div><h3>${esc(p.title)}</h3><p class="by">${esc(p.by)}</p>
+    <div class="price" data-price="${p.id}">${money(p.opts[0].price)}</div>
+    <div class="buy"><select aria-label="Format for ${esc(p.title)}" data-opt="${p.id}">${p.opts.map(o => `<option value="${o.id}">${esc(o.label)}${p.opts.length > 1 && o.price !== p.opts[0].price ? ' (' + money(o.price) + ')' : ''}</option>`).join('')}</select><button class="btn small dark" type="button" data-add="${p.id}">Add</button></div></article>`).join('');
+}
+document.addEventListener('change', e => { const s = e.target.closest('[data-opt]'); if (!s) return; const p = PRODUCTS.find(x => x.id === s.dataset.opt); const o = p.opts.find(x => x.id === s.value); $(`[data-price="${p.id}"]`).textContent = money(o.price); });
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-add]'); if (a) { const p = PRODUCTS.find(x => x.id === a.dataset.add); const o = $(`[data-opt="${p.id}"]`).value; const k = cartKey(p.id, o); cart[k] = (cart[k] || 0) + 1; store.set('cart', cart); renderCart(); toast(p.title + ' added to your cart.'); return; }
+  const q = e.target.closest('[data-q]'); if (q) { const k = q.dataset.k; cart[k] = (cart[k] || 0) + Number(q.dataset.q); if (cart[k] <= 0) delete cart[k]; store.set('cart', cart); renderCart(); }
+});
+function cartTotals(){ let n = 0, total = 0; Object.keys(cart).forEach(k => { const x = prodOpt(k); if (!x) { delete cart[k]; return; } n += cart[k]; total += cart[k] * x.o.price; }); return {n, total}; }
+function renderCart(){
+  const t = cartTotals(); $('#cartCount').textContent = t.n; $('#ctotal').textContent = money(t.total);
+  $('#citems').innerHTML = Object.keys(cart).length ? Object.keys(cart).map(k => { const x = prodOpt(k); return `<li class="citem"><div class="th">${art(x.p)}</div><div><b>${esc(x.p.title)}</b><div class="meta">${esc(x.o.label)} &middot; ${money(x.o.price)}</div><div class="qty"><button type="button" data-k="${esc(k)}" data-q="-1" aria-label="Remove one">&minus;</button><span>${cart[k]}</span><button type="button" data-k="${esc(k)}" data-q="1" aria-label="Add one">+</button></div></div><b>${money(cart[k] * x.o.price)}</b></li>`; }).join('') : '<li class="empty" style="color:var(--ink-2)">Your cart is empty. Pick a record and press Add.</li>';
+  $('#checkout').disabled = t.n === 0;
+}
+function cartOpen(o){ $('#drawer').classList.toggle('open', o); $('#scrim').classList.toggle('open', o); $('#drawer').setAttribute('aria-hidden', String(!o)); }
+$('#cartOpen').addEventListener('click', () => cartOpen(true));
+$('#cartClose').addEventListener('click', () => cartOpen(false));
+$('#scrim').addEventListener('click', () => cartOpen(false));
+$('#checkout').addEventListener('click', () => {
+  const items = Object.keys(cart).map(k => { const x = prodOpt(k); return {sku:k, title:x.p.title, option:x.o.label, qty:cart[k], price:x.o.price}; });
+  if (CONFIG.checkoutUrl) { location.href = CONFIG.checkoutUrl + (CONFIG.checkoutUrl.includes('?') ? '&' : '?') + 'cart=' + encodeURIComponent(JSON.stringify(items)); return; }
+  cartOpen(false); openDlg($('#orderDlg'));
+});
+$('#orderForm').addEventListener('submit', async e => {
+  e.preventDefault(); const d = Object.fromEntries(new FormData(e.target).entries());
+  const items = Object.keys(cart).map(k => { const x = prodOpt(k); return {title:x.p.title, option:x.o.label, qty:cart[k], price:x.o.price}; });
+  const rec = {id:uid(), type:'order', status:'new', at:new Date().toISOString(), data:{name:d.name, email:d.email, address:d.address, items, total:cartTotals().total}};
+  saveRecord('leads', rec); await postJSON({type:'order', ...rec.data});
+  Object.keys(cart).forEach(k => delete cart[k]); store.set('cart', cart); renderCart(); e.target.reset();
+  const m = $('#orderMsg'); m.className = 'msg ok'; m.textContent = 'Order request received. We will email you payment details.';
+  setTimeout(() => { closeDlg($('#orderDlg')); m.textContent = ''; }, 2600);
+});
+
+/* ============================================================
+   Canvas: record ring, mini viz, dancing stage
+   ============================================================ */
+function fit(c){ const dpr = Math.min(2, window.devicePixelRatio || 1), r = c.getBoundingClientRect(); const w = Math.max(1, Math.round(r.width * dpr)), h = Math.max(1, Math.round(r.height * dpr)); if (c.width !== w || c.height !== h) { c.width = w; c.height = h; } return {w, h, dpr}; }
+function drawRing(c){
+  const {w, h} = fit(c), g = c.getContext('2d'); g.clearRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2, r0 = w * .36, rmax = w * .14, n = 72;
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2 - Math.PI / 2, v = Math.min(1, Viz.bars[i] * 1.25);
+    const len = w * .012 + v * rmax, x1 = cx + Math.cos(a) * r0, y1 = cy + Math.sin(a) * r0, x2 = cx + Math.cos(a) * (r0 + len), y2 = cy + Math.sin(a) * (r0 + len);
+    g.strokeStyle = i % 3 === 0 ? '#FFC233' : i % 3 === 1 ? '#FF2D6B' : '#12C7AE'; g.lineWidth = w * .009; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke();
+  }
+}
+function drawLine(c){
+  const {w, h} = fit(c), g = c.getContext('2d'); g.clearRect(0, 0, w, h);
+  const n = 48, bw = w / n;
+  for (let i = 0; i < n; i++) { const v = Math.min(1, Viz.bars[Math.floor(i * 72 / n)] * 1.3), bh = Math.max(3, v * h); g.fillStyle = i % 2 ? '#FFC233' : '#FF2D6B'; const x = i * bw + bw * .2; g.beginPath(); g.roundRect ? g.roundRect(x, (h - bh) / 2, bw * .6, bh, bw * .3) : g.rect(x, (h - bh) / 2, bw * .6, bh); g.fill(); }
+}
+function limb(g, ox, oy, a1, l1, a2, l2){ const r = Math.PI / 180, x1 = ox + Math.cos(a1 * r) * l1, y1 = oy + Math.sin(a1 * r) * l1, x2 = x1 + Math.cos(a2 * r) * l2, y2 = y1 + Math.sin(a2 * r) * l2; g.beginPath(); g.moveTo(ox, oy); g.lineTo(x1, y1); g.lineTo(x2, y2); g.stroke(); }
+function dancer(g, x, y, s, ph, beat, e, col, kind){
+  const P = Math.PI, b = beat * P + ph, bob = Math.abs(Math.sin(b)) * (6 + 20 * e) * s, sway = Math.sin(b * .5) * (6 + 12 * e) * s;
+  const hipY = y - 74 * s - bob * .6, hip = {x:x + sway * .4, y:hipY}, sh = {x:x + sway, y:hipY - 46 * s}, head = {x:sh.x + sway * .15, y:sh.y - 22 * s};
+  g.fillStyle = 'rgba(0,0,0,.28)'; g.beginPath(); g.ellipse(x, y + 4 * s, 34 * s, 8 * s, 0, 0, P * 2); g.fill();
+  g.strokeStyle = col; g.lineCap = 'round'; g.lineJoin = 'round';
+  const amp = .5 + e;
+  g.lineWidth = 10 * s;
+  const lk = 24 * s;
+  limb(g, hip.x, hip.y, 100 + 20 * Math.sin(b) * amp, lk * 1.6, 92 - 10 * Math.sin(b) * amp, lk * 1.6);
+  limb(g, hip.x, hip.y, 80 - 20 * Math.sin(b) * amp, lk * 1.6, 88 + 10 * Math.sin(b) * amp, lk * 1.6);
+  g.lineWidth = 14 * s; g.beginPath(); g.moveTo(hip.x, hip.y); g.lineTo(sh.x, sh.y); g.stroke();
+  g.lineWidth = 8 * s; const al = 22 * s;
+  if (kind === 0) { limb(g, sh.x, sh.y, 215 + 38 * Math.sin(b) * amp, al * 1.4, 235 + 30 * Math.sin(b * 2) * amp, al * 1.3); limb(g, sh.x, sh.y, -35 - 38 * Math.sin(b + 1.6) * amp, al * 1.4, -55 - 30 * Math.sin(b * 2) * amp, al * 1.3); }
+  else if (kind === 1) { limb(g, sh.x, sh.y, 120 + 38 * Math.sin(b) * amp, al * 1.4, 100 + 30 * Math.sin(b) * amp, al * 1.3); limb(g, sh.x, sh.y, 60 - 38 * Math.sin(b) * amp, al * 1.4, 80 - 30 * Math.sin(b) * amp, al * 1.3); }
+  else { limb(g, sh.x, sh.y, -70 + 26 * Math.sin(b * 2) * amp, al * 1.4, -95 + 20 * Math.sin(b * 2) * amp, al * 1.3); limb(g, sh.x, sh.y, 125, al * 1.4, 95 + 18 * Math.sin(b) * amp, al * 1.3); }
+  g.fillStyle = col; g.beginPath(); g.arc(head.x, head.y, 13 * s, 0, P * 2); g.fill();
+}
+function drawStage(c){
+  const {w, h, dpr} = fit(c), g = c.getContext('2d'); g.clearRect(0, 0, w, h);
+  const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, '#1C0E45'); bg.addColorStop(1, '#2A1466'); g.fillStyle = bg; g.fillRect(0, 0, w, h);
+  const glow = .12 + Viz.bass * .5, cols = ['#FF2D6B', '#12C7AE', '#FFC233'];
+  for (let i = 0; i < 3; i++) { const gx = w * (.2 + i * .3), rg = g.createRadialGradient(gx, h * .15, 0, gx, h * .15, h * .9); rg.addColorStop(0, cols[i] + Math.round(glow * 255).toString(16).padStart(2, '0')); rg.addColorStop(1, cols[i] + '00'); g.fillStyle = rg; g.fillRect(0, 0, w, h); }
+  const fl = g.createLinearGradient(0, h * .78, 0, h); fl.addColorStop(0, '#3A1D8A'); fl.addColorStop(1, '#160A36'); g.fillStyle = fl; g.fillRect(0, h * .8, w, h * .2);
+  const base = h * .88, unit = h / 380, cs = [['#FF2D6B', 0], ['#FFC233', 1], ['#EFE9FF', 2], ['#12C7AE', 1], ['#9B7BFF', 0]];
+  const sc = [.86, 1, 1.12, 1, .86], xs = [.12, .3, .5, .7, .88];
+  for (let i = 0; i < 5; i++) dancer(g, w * xs[i], base + (i % 2 ? 0 : 6 * dpr), unit * sc[i] * 1.5, i * 1.3, Viz.beat * (i % 2 ? 1 : 1), Viz.bass * .9 + .1, cs[i][0], cs[i][1]);
+}
+
+let heroVisible = true, radioVisible = true, danceVisible = true;
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.target.id === 'deck') heroVisible = en.isIntersecting; if (en.target.id === 'radioBox') radioVisible = en.isIntersecting; if (en.target.id === 'stageBox') danceVisible = en.isIntersecting; }), {rootMargin:'100px'});
+  io.observe($('#deck')); $('#vizline').parentElement.id = 'radioBox'; io.observe($('#radioBox')); $('#stage').parentElement.id = 'stageBox'; io.observe($('#stageBox'));
+}
+function loop(now){
+  Viz.update(now);
+  if (heroVisible) drawRing($('#ring'));
+  if (radioVisible) { drawLine($('#vizline')); }
+  if (danceVisible) drawStage($('#stage'));
+  const pr = Engine.progress(); $('#progBar').style.width = (pr * 100).toFixed(1) + '%';
+  requestAnimationFrame(loop);
+}
+
+/* ============================================================
+   Join forms, tiers and calculator
+   ============================================================ */
+let role = 'artist';
+function renderRoles(){
+  $('#roleTabs').innerHTML = Object.keys(ROLES).map(k => `<button class="tab" type="button" role="tab" data-role-tab="${k}" aria-selected="${role === k}">${ROLES[k].label}</button>`).join('');
+  const R = ROLES[role];
+  $('#leadForm').innerHTML = `<p class="full" style="margin:0;font-weight:500">${esc(R.blurb)}</p>` + R.fields.map(f => {
+    const [name, label, type, req, cls, opts] = f, cl = cls ? ' class="f ' + cls + '"' : ' class="f"';
+    const ctl = type === 'textarea' ? `<textarea name="${name}" ${req ? 'required' : ''}></textarea>` : type === 'select' ? `<select name="${name}" ${req ? 'required' : ''}>${opts.map(o => `<option>${esc(o)}</option>`).join('')}</select>` : `<input name="${name}" type="${type}" ${req ? 'required' : ''} ${type === 'url' ? 'placeholder="https://"' : ''}>`;
+    return `<label${cl}><span>${esc(label)}</span>${ctl}</label>`;
+  }).join('') + `<label class="check full"><input type="checkbox" name="consent" required><span>I agree that Lovee World Records can contact me about this submission.</span></label><div class="full"><button class="btn primary" type="submit">Send to Lovee</button></div>`;
+}
+$('#roleTabs').addEventListener('click', e => { const t = e.target.closest('[data-role-tab]'); if (!t) return; role = t.dataset.roleTab; $('#leadMsg').textContent = ''; renderRoles(); });
+document.addEventListener('click', e => { const a = e.target.closest('a[data-role]'); if (a) { role = a.dataset.role; renderRoles(); } });
+$('#leadForm').addEventListener('submit', async e => {
+  e.preventDefault(); const d = Object.fromEntries(new FormData(e.target).entries()); delete d.consent;
+  saveRecord('leads', {id:uid(), type:role, status:'new', at:new Date().toISOString(), data:d});
+  const ok = await postJSON({type:role, ...d}); e.target.reset();
+  const m = $('#leadMsg');
+  if (CONFIG.formEndpoint && !ok) { m.className = 'msg err'; m.textContent = 'We saved your details but could not send them. Please email ' + CONFIG.contactEmail + ' so we do not miss you.'; }
+  else { m.className = 'msg ok'; m.textContent = 'Thank you, ' + (d.name || 'friend') + '. We read every submission and will email you.'; }
+});
+$('#challengeForm').addEventListener('submit', async e => {
+  e.preventDefault(); const d = Object.fromEntries(new FormData(e.target).entries());
+  saveRecord('leads', {id:uid(), type:'dance-challenge', status:'new', at:new Date().toISOString(), data:d}); await postJSON({type:'dance-challenge', ...d}); e.target.reset();
+  $('#chMsg').textContent = 'Clip received. Thank you for dancing with us.';
+});
+let tier = 'partner';
+function renderTiers(){
+  $('#tiers').innerHTML = TIERS.map(t => `<label class="tier"><input type="radio" name="tier" value="${t.id}" ${tier === t.id ? 'checked' : ''}><div><b>${esc(t.name)}: artist keeps ${t.artist}%</b><span>${esc(t.text)}</span></div></label>`).join('');
+  calc();
+}
+function calc(){
+  const rev = Number($('#rev').value), t = TIERS.find(x => x.id === tier), a = Math.round(rev * t.artist / 100), l = rev - a;
+  $('#revOut').textContent = money(rev); $('#aAmt').textContent = money(a); $('#lAmt').textContent = money(l);
+  $('#splitA').style.width = t.artist + '%'; $('#splitL').style.width = (100 - t.artist) + '%'; $('#splitA').textContent = t.artist + '%'; $('#splitL').textContent = (100 - t.artist) + '%';
+}
+$('#tiers').addEventListener('change', e => { if (e.target.name === 'tier') { tier = e.target.value; calc(); } });
+$('#rev').addEventListener('input', calc);
+
+/* footer, HQ, dialogs */
+$('#subForm').addEventListener('submit', async e => {
+  e.preventDefault(); const email = $('#subEmail').value;
+  saveRecord('leads', {id:uid(), type:'subscriber', status:'new', at:new Date().toISOString(), data:{email}}); await postJSON({type:'subscriber', email}); e.target.reset();
+  $('#subMsg').textContent = 'You are on the list.';
+});
+$('#syncLink').href = 'mailto:' + CONFIG.contactEmail + '?subject=Sync%20and%20licensing'; $('#pressLink').href = 'mailto:' + CONFIG.contactEmail + '?subject=Press';
+$('#yr').textContent = new Date().getFullYear();
+$$('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-close]')) closeDlg(d); }));
+
+function csvCell(v){ return '"' + String(v ?? '').replace(/"/g, '""') + '"'; }
+function renderHQ(){
+  const leads = store.get('leads', []), by = t => leads.filter(l => l.type === t).length;
+  const body = $('#hqBody');
+  body.innerHTML = `<p class="note">${CONFIG.formEndpoint ? 'Submissions are also sent to your form endpoint.' : '<b>Heads up:</b> no formEndpoint is set, so submissions are stored only in this browser. Set CONFIG.formEndpoint so they reach you.'}</p>
+  <div class="stats"><div class="stat"><b>${by('artist')}</b>Artists</div><div class="stat"><b>${by('dancer') + by('dance-challenge')}</b>Dancers</div><div class="stat"><b>${by('order')}</b>Orders</div><div class="stat"><b>${by('subscriber')}</b>Subscribers</div></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px"><button class="btn small" id="csvBtn" type="button">Export CSV</button><button class="btn small" id="clearBtn" type="button">Clear local data</button></div>
+  <div class="tablewrap"><table><thead><tr><th>Type</th><th>Who</th><th>Contact or link</th><th>Details</th><th>Status</th><th>Date</th></tr></thead><tbody>${leads.length ? leads.map(l => { const d = l.data || {}; return `<tr><td>${esc(l.type)}</td><td>${esc(d.name || d.artist || d.email || '')}</td><td>${esc(d.email || '')} ${d.link ? '<br>' + esc(d.link) : ''}</td><td>${esc(d.genre || d.style || d.craft || d.title || (d.items ? d.items.map(i => i.qty + 'x ' + i.title).join(', ') : '') || d.ask || '')}</td><td><select data-lead="${l.id}">${['new','reviewing','talking','signed','passed','contacted'].map(s => `<option ${l.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></td><td>${esc((l.at || '').slice(0, 10))}</td></tr>`; }).join('') : '<tr><td colspan="6">No submissions yet. They will appear here.</td></tr>'}</tbody></table></div>`;
+  $('#csvBtn').onclick = () => {
+    const rows = [['type','name','email','link','details','status','date']].concat(leads.map(l => { const d = l.data || {}; return [l.type, d.name || d.artist || '', d.email || '', d.link || '', JSON.stringify(d), l.status, l.at]; }));
+    const blob = new Blob([rows.map(r => r.map(csvCell).join(',')).join('\n')], {type:'text/csv'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'lovee-submissions.csv'; document.body.appendChild(a); a.click(); a.remove();
+  };
+  $('#clearBtn').onclick = () => { if (confirm('Clear all locally stored submissions?')) { store.set('leads', []); renderHQ(); } };
+  $$('[data-lead]', body).forEach(s => s.addEventListener('change', () => { const all = store.get('leads', []); const l = all.find(x => x.id === s.dataset.lead); if (l) { l.status = s.value; store.set('leads', all); } }));
+}
+function hqOpen(){ $('#hqLock').hidden = false; $('#hqBody').hidden = true; $('#pinMsg').textContent = ''; openDlg($('#hqDlg')); setTimeout(() => $('#pin').focus(), 50); }
+$('#hqOpen').addEventListener('click', hqOpen);
+$('#pinForm').addEventListener('submit', e => { e.preventDefault(); if ($('#pin').value === CONFIG.hqPin) { $('#hqLock').hidden = true; $('#hqBody').hidden = false; $('#pin').value = ''; renderHQ(); } else $('#pinMsg').textContent = 'That passcode is not right.'; });
+if (location.hash === '#hq') hqOpen();
+
+/* init */
+renderRoles(); renderTiers(); renderShop(); renderCart(); renderRadio();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
